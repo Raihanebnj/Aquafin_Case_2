@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Vorige Data</title>
-    <link rel="stylesheet" th:href="@{/main.css}" />
+
 </head>
 <body>
-<nav>
-    <img src="Aquafin.png" alt="Aquafin logo" class="logo" />
-    <ul>
-        <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/vorigeData}">Overzicht Data</a></li>
-    </ul>
-</nav>
 
 <table>
     <tr>
@@ -35,8 +28,5 @@
         <td th:text="${data.dec}"></td>
     </tr>
 </table>
-<footer>
-    <p>Copyright ©2025 Aquafin - All rights reserved</p>
-</footer>
 </body>
 </html>
