@@ -3,23 +3,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Aquafin neerslag</title>
 </head>
 <body>
 <div th:replace="fragments :: header"></div>
 
-<main>
+<div>
     <h1>Aquafin neerslag voorspelling</h1>
 
+    <h2>Waarschuwingen voor neerslag</h2>
+    <div th:if="${overstromingsgevaar}">
+        <p style="color: red">⚠️ Overstromingsgevaar in volgende steden:</p>
+        <ul>
+            <li th:each="stad : ${risicosteden}" th:text="${stad}"></li>
+        </ul>
+    </div>
 
-    <div>Waarschuwingen voor neerslag</div>
+    <div th:unless="${overstromingsgevaar}">
+        <p style="color: green;">✅ Geen overstromingsgevaar. Alle steden onder de drempel van <span
+                th:text="${risicoDrempel} + ' mm'"></span>.</p>
+    </div>
 
-    <div>Neerslag voorspelling voor de volgende 5 dagen</div>
+    <div>
+        <h2>Neerslag voorspelling voor de volgende 5 dagen</h2>
+        <pre th:text="${regenVoorspelling}"></pre>
+    </div>
 
-    <div>Live neerslagvoorspelling (grafiek)</div>
+
+    <h2>Live neerslagvoorspelling (grafiek)</h2>
 
 
-</main>
+</div>
 
 <div th:replace="fragments :: footer"></div>
 

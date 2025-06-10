@@ -50,7 +50,7 @@ public class NeerslagService {
 
             List<Double> waarden = new ArrayList<>();
             for (int i = 0; i < dagen; i++) {
-                waarden.add(coords[i]);
+                waarden.add(neerslag.getDouble(i));
             }
             neerslagPerStad.put(stad, waarden);
         }
