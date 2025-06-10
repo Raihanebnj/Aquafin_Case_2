@@ -1,109 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Aquafin neerslag</title>
+    <link rel="stylesheet" th:href="@{/main.css}" />
+
 </head>
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body { font-family: Arial, sans-serif; }
-
-    nav {
-        background-color: #1a237e;
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .logo {
-        height: 40px;
-        margin-right: 20px;
-    }
-
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-        background-color: rgba(255,255,255,0.1);
-    }
-
-    footer {
-        background-color: #1a237e;
-        text-align: center;
-        padding: 15px;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-    }
-
-    footer p {
-        color: white;
-        font-size: 14px;
-    }
-</style>
 <body>
+<nav>
+    <img src="Aquafin.png" alt="Aquafin logo" class="logo" />
+    <ul>
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/vorigeData}">Overzicht Data</a></li>
+    </ul>
+</nav>
 
-<div>
-    <nav>
-        <img src="Aquafin.png" alt="Aquafin" class="logo">
-        <ul>
-            <li>
-                <a th:href="@{/}">Home</a>
-            </li>
-            <li>
-                <a th:href="@{/vorigeData}">Overzicht Data</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-<div>
+<main>
     <h2>Aquafin neerslag voorspelling</h2>
 
     <h3>Waarschuwingen voor neerslag</h3>
     <div th:if="${overstromingsgevaar}">
-        <p style="color: red">⚠️ Overstromingsgevaar in volgende steden:</p>
+        <p class="warning">⚠️ Overstromingsgevaar in volgende steden:</p>
         <ul>
             <li th:each="stad : ${risicosteden}" th:text="${stad}"></li>
         </ul>
     </div>
-
     <div th:unless="${overstromingsgevaar}">
-        <p style="color: green;">✅ Geen overstromingsgevaar. Alle steden onder de drempel van <span
-                th:text="${risicoDrempel} + ' mm'"></span>.</p>
+        <p class="safe">✅ Geen overstromingsgevaar. Alle steden onder de drempel van <span th:text="${risicoDrempel} + ' mm'"></span>.</p>
     </div>
 
-    <div>
-        <h3>Neerslag voorspelling voor de volgende 5 dagen</h3>
-        <pre th:text="${regenVoorspelling}"></pre>
-    </div>
-
+    <h3>Neerslag voorspelling voor de volgende 5 dagen</h3>
+    <pre th:text="${regenVoorspelling}"></pre>
 
     <h3>Live neerslagvoorspelling (grafiek)</h3>
+    <!-- Grafiek kan hier komen -->
+</main>
 
-
-</div>
-
-<div>
-    <footer>
-        <p>Copyright ©2025 Aquafin - All rights reserved</p>
-    </footer>
-</div>
-
-
+<footer>
+    <p>Copyright ©2025 Aquafin - All rights reserved</p>
+</footer>
 </body>
 </html>
