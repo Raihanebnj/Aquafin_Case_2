@@ -5,13 +5,76 @@
     <meta charset="UTF-8">
     <title>Aquafin neerslag</title>
 </head>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { font-family: Arial, sans-serif; }
+
+    nav {
+        background-color: #1a237e;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+        height: 40px;
+        margin-right: 20px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    footer {
+        background-color: #1a237e;
+        text-align: center;
+        padding: 15px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer p {
+        color: white;
+        font-size: 14px;
+    }
+</style>
 <body>
-<div th:replace="fragments :: header"></div>
 
 <div>
-    <h1>Aquafin neerslag voorspelling</h1>
+    <nav>
+        <img src="Aquafin.png" alt="Aquafin" class="logo">
+        <ul>
+            <li>
+                <a th:href="@{/}">Home</a>
+            </li>
+            <li>
+                <a th:href="@{/vorigeData.html}">Overzicht Data</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
-    <h2>Waarschuwingen voor neerslag</h2>
+<div>
+    <h2>Aquafin neerslag voorspelling</h2>
+
+    <h3>Waarschuwingen voor neerslag</h3>
     <div th:if="${overstromingsgevaar}">
         <p style="color: red">⚠️ Overstromingsgevaar in volgende steden:</p>
         <ul>
@@ -25,17 +88,22 @@
     </div>
 
     <div>
-        <h2>Neerslag voorspelling voor de volgende 5 dagen</h2>
+        <h3>Neerslag voorspelling voor de volgende 5 dagen</h3>
         <pre th:text="${regenVoorspelling}"></pre>
     </div>
 
 
-    <h2>Live neerslagvoorspelling (grafiek)</h2>
+    <h3>Live neerslagvoorspelling (grafiek)</h3>
 
 
 </div>
 
-<div th:replace="fragments :: footer"></div>
+<div>
+    <footer>
+        <p>Copyright ©2025 Aquafin - All rights reserved</p>
+    </footer>
+</div>
+
 
 </body>
 </html>
