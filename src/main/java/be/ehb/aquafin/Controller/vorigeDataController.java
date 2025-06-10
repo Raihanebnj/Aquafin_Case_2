@@ -18,7 +18,7 @@ public class vorigeDataController {
     private NeerslagService neerslagService;
 
     @GetMapping("/vorigeData")
-    public String index(Model model) {
+    public String vorigeData(Model model) {
 
         List<Map<String, Object>> regenData = new ArrayList<>();
         int[][] data = {
@@ -43,7 +43,7 @@ public class vorigeDataController {
                 {2023, 61, 54, 68, 60, 87, 71, 93, 77, 68, 100, 100, 105},
                 {2024, 61, 58, 66, 61, 75, 77, 101, 88, 60, 96, 97, 114}
         };
-        String[] maanden = {"jaar", "jan", "feb", "mrt", "apr", "mei", "jul", "aug", "sep", "okt", "nov", "dec"};
+        String[] maanden = {"jaar", "jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"};
         for (int[] rij : data) {
             Map<String, Object> jaarData = new LinkedHashMap<>();
             for (int i = 0; i < maanden.length; i++) {
