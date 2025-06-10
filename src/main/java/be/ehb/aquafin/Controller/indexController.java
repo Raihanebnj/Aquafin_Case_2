@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Controller
 public class indexController {
+
     @Autowired
     private NeerslagService neerslagService;
 
