@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div th:fragment="header">
+    <nav style ="background-color: darkblue">
+        <ul>
+            <li>
+                <a th:href="@{/}">Home</a>
+            </li>
+            <li>
+                <a th:href="@{/vorige-data}"Vorige data></a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</div>
+<div th:fragment="footer">
+    <footer style="background-color: darkblue">
+        <p style="color: white">Copyright ©2025 Aquafin - All rights reserved</p>
+    </footer>
+
+
+</div>
+</body>
+</html>

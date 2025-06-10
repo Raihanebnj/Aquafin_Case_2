@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Index</title>
 </head>
 <body>
+<div th:replace="fragments :: header"></div>
+
+<main>
+    <h1>Aquafin neerslag voorspelling</h1>
+
+
+    <div>Waarschuwingen voor neerslag</div>
+
+    <div>Neerslag voorspelling voor de volgende 5 dagen</div>
+
+    <div>Live neerslagvoorspelling (grafiek)</div>
+
+
+</main>
+
+<div th:replace="fragments :: footer"></div>
 
 </body>
 </html>
