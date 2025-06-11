@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class indexController {
@@ -20,6 +21,16 @@ public class indexController {
         // Live data voor grafiek én tekst
         int dagen = 5;
         Map<String, Object> grafiekData = neerslagService.getGrafiekData(dagen);
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String regenGrafiekData = mapper.writeValueAsString(grafiekData);
+            model.addAttribute("regenGrafiekData", regenGrafiekData);
+        } catch (Exception e) {
+            model.addAttribute("regenGrafiekData", "{}");
+        }
+
         model.addAttribute("grafiekDatums", grafiekData.get("datums"));
         model.addAttribute("grafiekGemiddelde", grafiekData.get("gemiddelde"));
         model.addAttribute("grafiekPerStad", grafiekData.get("perStad"));

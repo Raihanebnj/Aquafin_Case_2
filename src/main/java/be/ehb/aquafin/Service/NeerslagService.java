@@ -22,6 +22,7 @@ public class NeerslagService {
             "Sint-Niklaas", new double[]{51.17, 4.14}
     );
 
+    // --- GRAFIEKDATA ---
     public Map<String, Object> getGrafiekData(int dagen) {
         Map<String, List<Double>> neerslagPerStad = new LinkedHashMap<>();
         List<String> datums = new ArrayList<>();
@@ -55,19 +56,20 @@ public class NeerslagService {
             neerslagPerStad.put(stad, waarden);
         }
 
+        //  gemiddelde per dag berekenen
         List<Double> gemiddelde = new ArrayList<>();
         for (int dag = 0; dag < dagen; dag++) {
             double som = 0.0;
             for (List<Double> waardes : neerslagPerStad.values()) {
                 som += waardes.get(dag);
             }
-            gemiddelde.add(som);
+            gemiddelde.add(som / aantalSteden);
         }
+
         Map<String, Object> grafiekData = new HashMap<>();
         grafiekData.put("datums", datums);
-        grafiekData.put("geiddelde", gemiddelde);
-        grafiekData.put("stad", neerslagPerStad);
-
+        grafiekData.put("gemiddelde", gemiddelde);     // juiste key en waarde!
+        grafiekData.put("perStad", neerslagPerStad);   // juiste key en waarde!
         return grafiekData;
     }
 
@@ -110,12 +112,12 @@ public class NeerslagService {
                 som += waarden.get(dag);
             }
             double gemiddelde = som / stadNaarNeerslag.size();
-            resultaat.append(String.format("%s\n", datums.get(dag), gemiddelde));
+            resultaat.append(String.format("%s: %.1f mm\n", datums.get(dag), gemiddelde));
         }
 
         resultaat.append("\nDetails per stad:\n");
         for (String stad : stadNaarNeerslag.keySet()) {
-            resultaat.append(stad).append(":");
+            resultaat.append(stad).append(": ");
             List<Double> waardes = stadNaarNeerslag.get(stad);
             for (int dag = 0; dag < dagen; dag++) {
                 resultaat.append(String.format("%.1f", waardes.get(dag)));
@@ -124,9 +126,9 @@ public class NeerslagService {
             resultaat.append(" mm\n");
         }
         return resultaat.toString();
-
     }
 
+    // --- OVERSTROMINGSWAARSCHUWING ---
     public Map<String, Object> getOverstromingsWaarschuwing(int dagen) {
         Map<String, Object> resultaat = new HashMap<>();
         double drempel = 40.0;
@@ -163,5 +165,4 @@ public class NeerslagService {
 
         return resultaat;
     }
-
 }
