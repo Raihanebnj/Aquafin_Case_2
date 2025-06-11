@@ -8,7 +8,15 @@
 
 </head>
 <body>
-
+<nav>
+    <img src="Aquafin.png" alt="Aquafin logo" class="logo" />
+    <ul>
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/vorigeData}">Overzicht Data</a></li>
+    </ul>
+</nav>
+<main class="mainData">
+    <h2>Overzicht Data</h2>
 <table>
     <tr>
         <th>Jaar</th>
@@ -30,5 +38,9 @@
         <td th:text="${data.dec}"></td>
     </tr>
 </table>
+</main>
+<footer>
+    <p>Copyright ©2025 Aquafin - All rights reserved</p>
+</footer>
 </body>
 </html>
