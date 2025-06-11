@@ -26,7 +26,7 @@
         </ul>
     </div>
     <div th:unless="${overstromingsgevaar}">
-        <p class="safe">✅ Geen overstromingsgevaar. Alle steden onder de drempel van <span th:text="${risicoDrempel} + ' mm'"></span>.</p>
+        <p class="safe"> Geen overstromingsgevaar. Alle steden onder de drempel van <span th:text="${risicoDrempel} + ' mm in 3 dagen'"></span>.</p>
     </div>
 
     <h3>Neerslag voorspelling voor de volgende 5 dagen</h3>

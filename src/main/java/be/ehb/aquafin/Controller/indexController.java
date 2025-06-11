@@ -18,8 +18,9 @@ public class indexController {
     public String index(Model model) {
 
 
-        // Live data voor grafiek én tekst
+        //  data voor grafiek én tekst
         int dagen = 5;
+
         Map<String, Object> grafiekData = neerslagService.getGrafiekData(dagen);
 
 
@@ -35,7 +36,6 @@ public class indexController {
         model.addAttribute("grafiekGemiddelde", grafiekData.get("gemiddelde"));
         model.addAttribute("grafiekPerStad", grafiekData.get("perStad"));
 
-        // groene box
         String regenVoorspelling = neerslagService.getRegenVoorspellingTekst();
         model.addAttribute("regenVoorspelling", regenVoorspelling);
 
