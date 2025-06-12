@@ -12,6 +12,9 @@ Deze webapplicatie toont het actuele en historische overstromingsrisico in Vlaan
 - **Historische data:**  
   Tabel met alle maandelijkse neerslag van 2005 t/m 2025.  
   Voor 2025 worden ontbrekende maanden als `X` weergegeven.
+- **Zoekfunctionaliteit:**  
+  Zoek kleindere gemeentes of steden die voorspelling weergeven
+  en gevaar bij toepassing.
 - **Branding:**  
   Professionele header en footer in Aquafin-stijl met logo en officiële contactgegevens.
 
@@ -24,7 +27,7 @@ Deze webapplicatie toont het actuele en historische overstromingsrisico in Vlaan
 - Open-Meteo API (live data)
 - HTML/CSS (custom, responsive)
 - Maven
-
+- Nominatim API
 ## Team
 
 - Abdullah
@@ -50,12 +53,14 @@ Deze webapplicatie toont het actuele en historische overstromingsrisico in Vlaan
 - Alle ehb cursussen van dit jaar
 - https://open-meteo.com/
 - https://www.aquafin.be/nl-be
-- https://chat.openai.com/  : 
+- https://nominatim.openstreetmap.org/
+- https://chat.openai.com/  
 
 - chats van Noah: 
 - https://chatgpt.com/share/68496888-f6d4-8009-8007-cfce7f206923,
 - https://chatgpt.com/share/684968ae-fb18-8009-837d-3dd25ce73d39, 
-- https://chatgpt.com/share/68496875-4650-8009-b0a8-5b9afb37e815
+- https://chatgpt.com/share/68496875-4650-8009-b0a8-5b9afb37e815,
+- https://chatgpt.com/share/684aa50b-7210-8009-9697-4f9ee68b5592
 
 chats van abdullah:
 https://chatgpt.com/share/68496753-6b6c-800c-96e6-a9ef0fbf2f4e

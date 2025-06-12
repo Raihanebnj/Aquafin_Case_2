@@ -18,6 +18,57 @@
         .alert-danger strong {
             color: #d32f2f;
         }
+        #gemeente-zoek {
+            margin: 48px auto 0 auto;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        #gemeente-zoek h3 {
+            font-size: 1.16em;
+            font-weight: 600;
+            margin-bottom: 18px;
+            letter-spacing: 0.01em;
+        }
+
+        #zoekForm {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        #gemeenteInput {
+            flex: 1;
+            padding: 10px 14px;
+            font-size: 1.03em;
+            border: 2px solid #93caf2;
+            border-radius: 8px;
+            outline: none;
+            background: #f8fbfd;
+            transition: border-color 0.2s;
+        }
+        #gemeenteInput:focus {
+            border-color: #2995d1;
+            background: #f3faff;
+        }
+
+        #zoekForm button {
+            padding: 10px 22px;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #2995d1 60%, #43b0e3 100%);
+            color: #fff;
+            box-shadow: 0 2px 8px #b1d2f955;
+            cursor: pointer;
+            transition: background 0.18s, transform 0.16s;
+        }
+        #zoekForm button:hover, #zoekForm button:focus {
+            background: linear-gradient(90deg, #2388bd 60%, #2c95c8 100%);
+            transform: translateY(-1px) scale(1.04);
+        }
+
     </style>
 </head>
 <body>
@@ -113,6 +164,65 @@
 
                     }
                 }
+            }
+        });
+    </script>
+    <!-- ZOEKFUNCTIE GEMEENTE -->
+    <hr>
+    <div id="gemeente-zoek" style="margin-top:40px;">
+        <h3>Zoek neerslag voor een gemeente of stad</h3>
+        <form id="zoekForm">
+            <input type="text" id="gemeenteInput" placeholder="Gemeente of stad bv. Liedekerke" required>
+            <button type="submit">Zoek</button>
+        </form>
+        <div id="resultaatZoek" style="margin-top:16px; font-size:1.08em;"></div>
+    </div>
+    <script>
+        document.getElementById('zoekForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const gemeente = document.getElementById('gemeenteInput').value.trim();
+
+            const resultaatDiv = document.getElementById('resultaatZoek');
+            resultaatDiv.innerHTML = "Bezig met zoeken...";
+
+            // coördinaten  via Nominatim (OpenStreetMap)
+            const nominatimUrl = `https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(gemeente)}&country=Belgium&format=json&limit=1`;
+            try {
+                const res = await fetch(nominatimUrl, {
+                    headers: {
+                        'Accept-Language': 'nl,en'
+                    }
+                });
+                const data = await res.json();
+                if (data.length === 0) {
+                    resultaatDiv.innerHTML = "Geen gemeente of stad gevonden met deze naam.";
+                    return;
+                }
+                const lat = data[0].lat;
+                const lon = data[0].lon;
+
+                // Haal de neerslagvoorspelling via Open-Meteo
+                const meteoUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=precipitation_sum&forecast_days=5&timezone=auto`;
+                const meteoRes = await fetch(meteoUrl);
+                const meteoData = await meteoRes.json();
+                const neerslag = meteoData.daily.precipitation_sum;
+                const datums = meteoData.daily.time;
+
+                let html = `<strong>Voorspelling voor <b>${gemeente}</b>:</strong><br><ul>`;
+                for (let i = 0; i < datums.length; i++) {
+                    html += `<li>${datums[i]}: <b>${neerslag[i]} mm</b></li>`;
+                }
+                html += "</ul>";
+
+                // Bereken totale neerslag in de eerste 3 dagen zoals neerslagservice
+                const som3dagen = neerslag.slice(0, 3).reduce((a, b) => a + b, 0);
+                if (som3dagen > 40) {
+                    html += `<div class="alert-danger" style="margin-top:18px;"><strong>⚠️ Gevaar op overstroming:</strong><br>In de komende 3 dagen wordt er ${som3dagen.toFixed(1)} mm neerslag verwacht!</div>`;
+                }
+
+                resultaatDiv.innerHTML = html;
+            } catch (err) {
+                resultaatDiv.innerHTML = "Fout bij het ophalen van de gegevens.";
             }
         });
     </script>
