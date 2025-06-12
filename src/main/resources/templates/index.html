@@ -4,7 +4,21 @@
     <meta charset="UTF-8" />
     <title>Aquafin neerslag</title>
     <link rel="stylesheet" th:href="@{css/main.css}" />
-
+    <style>
+        .alert-danger {
+            border: 2px solid #d32f2f;
+            background-color: #fdecea;
+            color: #b71c1c;
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 25px 0 18px 0;
+            font-size: 1.08em;
+            box-shadow: 0 2px 6px #ebcccc44;
+        }
+        .alert-danger strong {
+            color: #d32f2f;
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -19,12 +33,13 @@
     <h2>Aquafin neerslag voorspelling</h2>
 
     <h3>Waarschuwingen voor neerslag</h3>
-    <div th:if="${overstromingsgevaar}">
-        <p class="warning">⚠️ Overstromingsgevaar in volgende steden:</p>
+    <div th:if="${overstromingsgevaar}" class="alert-danger">
+        <strong>⚠️ Overstromingsgevaar in volgende steden:</strong>
         <ul>
             <li th:each="stad : ${risicosteden}" th:text="${stad}"></li>
         </ul>
     </div>
+
     <div th:unless="${overstromingsgevaar}">
         <p class="safe"> Geen overstromingsgevaar. Alle steden onder de drempel van <span th:text="${risicoDrempel} + ' mm in 3 dagen'"></span>.</p>
     </div>
@@ -95,6 +110,7 @@
                     y: {
                         beginAtZero: true,
                         title: { display: true, text: "Neerslag (mm)" }
+
                     }
                 }
             }

@@ -131,7 +131,7 @@ public class NeerslagService {
     // --- OVERSTROMINGSWAARSCHUWING ---
     public Map<String, Object> getOverstromingsWaarschuwing(int dagen) {
         Map<String, Object> resultaat = new HashMap<>();
-        double drempel = 40.0;
+        double drempel = 1.0;
 
         List<String> risicosteden = new ArrayList<>();
         Map<String, Double> stadWaarde = new LinkedHashMap<>();
