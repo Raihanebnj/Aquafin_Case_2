@@ -1,11 +1,4 @@
-/* Main.css - Algemene stijlen voor de webapplicatie */
-
-
-pre {/**
- * Algemene stijlen
- */
 body {
-    /* Basisopmaak voor het hele document */
     font: 16px Arial, sans-serif;
     background: #f4f6fb;
     color: #333;
@@ -15,11 +8,7 @@ body {
     margin: 0;
 }
 
-/**
- * Navigatie en voettekst
- */
 nav, footer {
-    /* Donkerblauwe balk met schaduw */
     background: #1a237e;
     padding: 10px 30px;
     display: flex;
@@ -29,24 +18,19 @@ nav, footer {
     color: white;
 }
 
-/**
- * Logo en navigatie-elementen
- */
+
 .logo {
-    /* Logo afmetingen en afstand */
     height: 40px;
     margin-right: 25px;
 }
 
 .nav-center {
-    /* Centrering van navigatie */
     flex: 1;
     display: flex;
     justify-content: center;
 }
 
 nav ul {
-    /* Horizontale lijst voor menu-items */
     list-style: none;
     display: flex;
     gap: 25px;
@@ -55,7 +39,6 @@ nav ul {
 }
 
 nav a {
-    /* Opmaak navigatielinks */
     color: #fff;
     text-decoration: none;
     padding: 8px 18px;
@@ -64,71 +47,41 @@ nav a {
     transition: background-color 0.3s;
 }
 
-/**
- * Koppen en tekstopmaak
- */
+nav a:hover {
+    background: rgba(255,255,255,0.15);
+}
 h2, h3 {
-    /* Hoofdkoppen in donkerblauw */
     color: #1a237e;
     margin: 0 0 20px;
 }
 
 h3 {
-    /* Subkoppen met onderlijn */
     color: #3949ab;
     border-bottom: 2px solid #3949ab;
     padding-bottom: 6px;
     margin-top: 25px;
 }
 
-/**
- * Waarschuwingsteksten
- */
+p {
+    margin: 0 0 15px;
+    line-height: 1.5;
+}
+
 p.warning {
-    /* Rode waarschuwingstekst */
     color: #d32f2f;
     font-weight: 700;
 }
 
 p.safe {
-    /* Groene veiligheidstekst */
     color: #388e3c;
     font-weight: 700;
 }
 
-/**
- * Tabelopmaak
- */
-table {
-    /* Tabelstructuur */
-    border-collapse: collapse;
-    width: 80%;
+ul {
+    margin: 0 0 20px 20px;
 }
 
-th {
-    /* Tabelkoppen met lichtblauwe achtergrond */
-    border: 1px solid;
-    padding: 10px;
-    background-color: lightblue;
-}
-
-/**
- * Hoofdcontainer stijlen
- */
-.mainIndex {
-    /* Centrale inhoud op indexpagina */
-    flex-grow: 1;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.mainData {
-    /* Datapagina opmaak */
-    flex-grow: 1;
-    padding-top: 20px;
-    padding-left: 15%;
-    padding-bottom: 60px;
-}
+pre {
     background: #e8eaf6;
     padding: 15px;
     border-radius: 6px;
