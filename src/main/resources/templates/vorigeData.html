@@ -1,46 +1,63 @@
+<!--
+ * Template voor het tonen van historische neerslagdata.
+ * Gebruikt Thymeleaf voor dynamische data-weergave.
+ * Toont een tabel met maandelijkse neerslagwaarden per jaar.
+ -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Metadata en titel -->
     <meta charset="UTF-8">
     <title>Vorige Data</title>
+    <!-- Koppeling naar hoofdstijlbestand -->
     <link rel="stylesheet" th:href="@{css/main.css}" />
-
-
 </head>
 <body>
-<nav>
-    <a th:href="@{/}"><img src="Aquafin.png" alt="Aquafin logo" class="logo" /></a>
-    <ul>
-        <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/vorigeData}">Overzicht Data</a></li>
-    </ul>
-</nav>
-<main class="mainData">
-    <h2>Overzicht Data</h2>
-<table>
-    <tr>
-        <th>Jaar</th>
-        <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>Mei</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Okt</th><th>Nov</th><th>Dec</th>
-    </tr>
-    <tr th:each="data : ${regenData}">
-        <td th:text="${data.jaar}"></td>
-        <td th:text="${data.jan}"></td>
-        <td th:text="${data.feb}"></td>
-        <td th:text="${data.mrt}"></td>
-        <td th:text="${data.apr}"></td>
-        <td th:text="${data.mei}"></td>
-        <td th:text="${data.jun}"></td>
-        <td th:text="${data.jul}"></td>
-        <td th:text="${data.aug}"></td>
-        <td th:text="${data.sep}"></td>
-        <td th:text="${data.okt}"></td>
-        <td th:text="${data.nov}"></td>
-        <td th:text="${data.dec}"></td>
-    </tr>
-</table>
-</main>
-<footer>
-    <p>Copyright ©2025 Aquafin - All rights reserved</p>
-</footer>
+    <!-- Navigatiebalk met logo en menu -->
+    <nav>
+        <!-- Logo met link naar homepage -->
+        <a th:href="@{/}"><img src="Aquafin.png" alt="Aquafin logo" class="logo" /></a>
+        <!-- Navigatiemenu -->
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/vorigeData}">Overzicht Data</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hoofdinhoud -->
+    <main class="mainData">
+        <h2>Overzicht Data</h2>
+        <!-- Tabel met historische neerslagdata -->
+        <table>
+            <!-- Tabelkop met maandnamen -->
+            <tr>
+                <th>Jaar</th>
+                <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th>
+                <th>Mei</th><th>Jun</th><th>Jul</th><th>Aug</th>
+                <th>Sep</th><th>Okt</th><th>Nov</th><th>Dec</th>
+            </tr>
+            <!-- Dynamische rijen met neerslagdata -->
+            <tr th:each="data : ${regenData}">
+                <td th:text="${data.jaar}"></td>
+                <td th:text="${data.jan}"></td>
+                <td th:text="${data.feb}"></td>
+                <td th:text="${data.mrt}"></td>
+                <td th:text="${data.apr}"></td>
+                <td th:text="${data.mei}"></td>
+                <td th:text="${data.jun}"></td>
+                <td th:text="${data.jul}"></td>
+                <td th:text="${data.aug}"></td>
+                <td th:text="${data.sep}"></td>
+                <td th:text="${data.okt}"></td>
+                <td th:text="${data.nov}"></td>
+                <td th:text="${data.dec}"></td>
+            </tr>
+        </table>
+    </main>
+
+    <!-- Voettekst met copyright informatie -->
+    <footer>
+        <p>Copyright ©2025 Aquafin - All rights reserved</p>
+    </footer>
 </body>
 </html>
