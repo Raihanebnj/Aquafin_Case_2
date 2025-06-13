@@ -32,7 +32,7 @@ Deze webapplicatie toont het actuele en historische overstromingsrisico in Vlaan
 
 - Abdullah
 - Noah
-- Kim
+- Kimberley
 - Dalil
 - Raihane
 
@@ -65,3 +65,5 @@ Deze webapplicatie toont het actuele en historische overstromingsrisico in Vlaan
 
 chats van abdullah:
 https://chatgpt.com/share/68496753-6b6c-800c-96e6-a9ef0fbf2f4e
+
+Chat van Kimberley: https://chatgpt.com/share/684963ee-8498-8005-9ce1-a5c4bf6a5470
