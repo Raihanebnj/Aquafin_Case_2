@@ -49,6 +49,7 @@ Deze webapplicatie toont het actuele en historische overstromingsrisico in Vlaan
 ![api.png](screenshots/api.png)
 ![geschiedenis.png](screenshots/geschiedenis.png)
 ![grafiek.png](screenshots/grafiek.png)
+![KleineSteden.png](screenshots/KleineSteden.png)
 ## Bronnen
 - Alle ehb cursussen van dit jaar
 - https://open-meteo.com/
