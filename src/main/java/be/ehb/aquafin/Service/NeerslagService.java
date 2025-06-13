@@ -5,11 +5,28 @@ import org.springframework.web.client.RestTemplate;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import java.util.*;
-
+/**
+ * Service klasse voor het ophalen en analyseren van neerslagdata voor 10 Vlaamse steden.
+ * Maakt gebruik van de Open-Meteo API voor weervoorspellingen.
+ */
 @Service
 public class NeerslagService {
-
+    /**
+     * Vaste lijst van Vlaamse steden met hun geografische coördinaten.
+     * Bevat 10 steden met hun breedtegraad en lengtegraad.
+     */
     private static final Map<String, double[]> STEDEN = Map.of(
+
+            /**
+             * Haalt neerslagdata op voor grafiekweergave.
+             * Verzamelt data van alle steden en berekent dagelijkse gemiddelden.
+             *
+             * @param dagen Aantal dagen om vooruit te voorspellen
+             * @return Map met drie elementen:
+             *         - "datums": List<String> met datums voor de x-as
+             *         - "gemiddelde": List<Double> met gemiddelde neerslag per dag
+             *         - "perStad": Map<String, List<Double>> met neerslag per stad
+             */
             "Antwerpen", new double[]{51.22, 4.40},
             "Gent", new double[]{51.05, 3.72},
             "Brugge", new double[]{51.21, 3.22},
@@ -24,6 +41,7 @@ public class NeerslagService {
 
     // --- GRAFIEKDATA ---
     public Map<String, Object> getGrafiekData(int dagen) {
+        // Implementatie voor ophalen en verwerken van grafiekdata
         Map<String, List<Double>> neerslagPerStad = new LinkedHashMap<>();
         List<String> datums = new ArrayList<>();
         int aantalSteden = STEDEN.size();
@@ -72,12 +90,32 @@ public class NeerslagService {
         grafiekData.put("perStad", neerslagPerStad);   // juiste key en waarde!
         return grafiekData;
     }
+    /**
+     * Genereert een tekstuele voorspelling voor 5 dagen vooruit.
+     * Toont zowel het Vlaamse gemiddelde als details per stad.
+     *
+     * @return String met twee secties:
+     *         1. Gemiddelde neerslag voor Vlaanderen per dag
+     *         2. Gedetailleerde neerslagwaarden per stad
+     */
 
     public String getRegenVoorspellingTekst() {
+        // Implementatie voor genereren van tekstuele voorspelling
         int dagen = 5;
         Map<String, List<Double>> stadNaarNeerslag = new LinkedHashMap<>();
         List<String> datums = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
+
+        /**
+         * Analyseert overstromingsrisico's gebaseerd op voorspelde neerslag.
+         * Een stad heeft risico als de totale neerslag de drempelwaarde (40mm) overschrijdt.
+         *
+         * @param dagen Aantal dagen om vooruit te analyseren
+         * @return Map met drie elementen:
+         *         - "gevaar": boolean die aangeeft of er risico is
+         *         - "risicosteden": List<String> met steden boven drempelwaarde
+         *         - "drempel": double met drempelwaarde (40.0 mm)
+         */
 
         for (var entry : STEDEN.entrySet()) {
             String stad = entry.getKey();
@@ -130,6 +168,7 @@ public class NeerslagService {
 
     // --- OVERSTROMINGSWAARSCHUWING ---
     public Map<String, Object> getOverstromingsWaarschuwing(int dagen) {
+        // Implementatie voor overstromingswaarschuwingen
         Map<String, Object> resultaat = new HashMap<>();
         double drempel = 40.0;
 
