@@ -16,6 +16,18 @@
 </nav>
 
 <main class="mainIndex">
+    <!-- EEN STUK VAN ZOEKFUNCTIE GEMEENTE -->
+
+    <h2 style="margin-top: 30px;">Zoek neerslag voor een gemeente of stad</h2>
+    <form id="zoekForm">
+        <input type="text" id="gemeenteInput" placeholder="Gemeente of stad bv. Liedekerke" required>
+        <button type="submit">Zoek</button>
+    </form>
+    <div id="gemeente-zoek" style="margin-top:40px;">
+
+        <div id="resultaatZoek" style="margin-top:16px; font-size:1.08em;"></div>
+    </div>
+
     <h2>Aquafin neerslag voorspelling</h2>
 
     <h3>Waarschuwingen voor neerslag</h3>
@@ -103,15 +115,6 @@
         });
     </script>
     <!-- ZOEKFUNCTIE GEMEENTE -->
-    <hr>
-    <div id="gemeente-zoek" style="margin-top:40px;">
-        <h3>Zoek neerslag voor een gemeente of stad</h3>
-        <form id="zoekForm">
-            <input type="text" id="gemeenteInput" placeholder="Gemeente of stad bv. Liedekerke" required>
-            <button type="submit">Zoek</button>
-        </form>
-        <div id="resultaatZoek" style="margin-top:16px; font-size:1.08em;"></div>
-    </div>
     <script>
         document.getElementById('zoekForm').addEventListener('submit', async function(e) {
             e.preventDefault();

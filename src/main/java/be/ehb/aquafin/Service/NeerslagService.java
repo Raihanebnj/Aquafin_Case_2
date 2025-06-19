@@ -153,16 +153,23 @@ public class NeerslagService {
             resultaat.append(String.format("%s: %.1f mm\n", datums.get(dag), gemiddelde));
         }
 
-        resultaat.append("\nDetails per stad:\n");
+        resultaat.append("Details per stad:\n");
+
+        resultaat.append(String.format("%-12s", "Stad/Datum"));
+        for (String datum : datums) {
+            resultaat.append(String.format("%12s", datum));
+        }
+        resultaat.append("\n");
+
         for (String stad : stadNaarNeerslag.keySet()) {
-            resultaat.append(stad).append(": ");
+            resultaat.append(String.format("%-12s", stad));
             List<Double> waardes = stadNaarNeerslag.get(stad);
             for (int dag = 0; dag < dagen; dag++) {
-                resultaat.append(String.format("%.1f", waardes.get(dag)));
-                if (dag != dagen - 1) resultaat.append(", ");
+                resultaat.append(String.format("%12.1f", waardes.get(dag)));
             }
             resultaat.append(" mm\n");
         }
+
         return resultaat.toString();
     }
 
